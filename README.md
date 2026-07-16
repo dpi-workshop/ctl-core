@@ -4,6 +4,8 @@
 
 RAG chunks. Markdown flattens. CTL preserves.
 
+![CTL package flow](docs/assets/ctl-package-flow.svg)
+
 CTL-Core is a file-first, database-optional ingestion layer for AI agents,
 RAG systems, wiki workflows, research archives, classroom materials, and
 publishing pipelines. It keeps the original source, copies reusable parts,
@@ -81,6 +83,14 @@ output/demo-market-snapshot/manifests/provenance.json
 output/demo-market-snapshot/search.json
 output/demo-market-snapshot/assets/tables/ctl-records.json
 output/demo-market-snapshot/okf/index.md
+```
+
+Inspect, validate, and search the package:
+
+```shell
+python -m ctl_core inspect output/demo-market-snapshot
+python -m ctl_core validate output/demo-market-snapshot
+python -m ctl_core search output/demo-market-snapshot HTML
 ```
 
 ## PDF Demo
@@ -242,6 +252,9 @@ opening issues or pull requests.
 - [Adapter guide](docs/adapters.md)
 - [Roadmap](docs/roadmap.md)
 - [Release checklist](docs/release-checklist.md)
+- [Agent reading example](examples/agent-read-package.md)
+- [Adapter manifest example](examples/adapter-manifest.json)
+- [Changelog](CHANGELOG.md)
 
 ## License
 

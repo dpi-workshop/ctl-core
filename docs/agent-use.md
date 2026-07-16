@@ -22,6 +22,9 @@ When an agent receives a CTL package path, it should read in this order:
 This gives the agent the package summary, provenance, searchable text, canonical
 records, catalogue cards, human-readable HTML, and reusable assets.
 
+For a compact copy-pasteable contract, see
+[../examples/agent-read-package.md](../examples/agent-read-package.md).
+
 ## Important Files
 
 | File | How agents should use it |
@@ -124,4 +127,3 @@ skills   use CTL memory, write annotations, build outputs from CTL assets
 ```
 
 These are convenience layers. The package layout is the durable contract.
-

@@ -63,6 +63,8 @@ def main() -> None:
             "scripts/ctl_schema.py",
             "scripts/check_release_safety.py",
             "scripts/build_demo_pdf.py",
+            "ctl_core/cli.py",
+            "ctl_core/__main__.py",
         ]
     )
 
@@ -70,12 +72,16 @@ def main() -> None:
     run([PYTHON, "scripts/ctl_parser_lab.py", "samples/simple-source/market-snapshot.html", "-o", html_output])
     exists(f"{html_output}/documents/parser-lab-report.html")
     exists(f"{html_output}/okf/index.md")
+    run([PYTHON, "-m", "ctl_core", "inspect", html_output])
+    run([PYTHON, "-m", "ctl_core", "validate", html_output])
+    run([PYTHON, "-m", "ctl_core", "search", html_output, "HTML"])
 
     codebase_output = smoke_output("codebase")
     run([PYTHON, "scripts/ctl_codebase_adapter.py", ".", "-o", codebase_output, "--name", "ctl-core-smoke"])
     exists(f"{codebase_output}/documents/codebase-report.html")
     exists(f"{codebase_output}/graph/ctl-code-graph.json")
     exists(f"{codebase_output}/okf/index.md")
+    run([PYTHON, "-m", "ctl_core", "validate", codebase_output])
 
     if args.network:
         github_output = smoke_output("github")

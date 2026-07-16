@@ -1,0 +1,39 @@
+{
+  "name": "ctl-adapter-example",
+  "display_name": "Example CTL Adapter",
+  "family": "parser",
+  "status": "experimental",
+  "description": "Demonstrates the metadata CTL expects from optional adapters.",
+  "repository": "https://github.com/example/ctl-adapter-example",
+  "license": "verify-upstream-before-bundling",
+  "external_dependencies": [
+    {
+      "name": "example-parser",
+      "type": "python-package",
+      "required": true,
+      "install_hint": "python -m pip install example-parser",
+      "license": "verify"
+    }
+  ],
+  "input_formats": ["pdf", "docx", "html"],
+  "capabilities": ["text", "tables", "figures", "layout", "provenance"],
+  "output_contract": {
+    "records": "assets/tables/ctl-records.json",
+    "provenance": "manifests/provenance.json",
+    "search": "search.json",
+    "okf": "okf/index.md",
+    "html": "documents/*.html"
+  },
+  "permission_boundary": {
+    "network": false,
+    "writes_outside_package": false,
+    "requires_user_credentials": false
+  },
+  "quality_checks": [
+    "record ids are stable",
+    "source files are preserved",
+    "asset paths are relative",
+    "tables remain structured",
+    "figures keep captions and provenance"
+  ]
+}

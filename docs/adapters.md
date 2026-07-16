@@ -65,6 +65,9 @@ Each record should follow this shape:
 }
 ```
 
+See [../examples/adapter-manifest.json](../examples/adapter-manifest.json) for
+a fuller example with dependency, permission, output, and quality-check fields.
+
 ## Adapter Manifest
 
 Community adapters should include a manifest like:

@@ -323,10 +323,14 @@ def build_codebase_package(root: Path, output_dir: Path, package_name: str | Non
     root = root.resolve()
     output_dir = output_dir.resolve()
     package_name = package_name or slugify(root.name or "codebase")
+    original_dir = output_dir / "assets" / "original"
     tables_dir = output_dir / "assets" / "tables"
     graph_dir = output_dir / "graph"
+    manifests_dir = output_dir / "manifests"
+    original_dir.mkdir(parents=True, exist_ok=True)
     tables_dir.mkdir(parents=True, exist_ok=True)
     graph_dir.mkdir(parents=True, exist_ok=True)
+    manifests_dir.mkdir(parents=True, exist_ok=True)
 
     records: list[CtlRecord] = []
     edges: list[dict[str, Any]] = []
@@ -441,13 +445,39 @@ def build_codebase_package(root: Path, output_dir: Path, package_name: str | Non
         },
     }
 
+    git = git_metadata(root)
+    write_json(
+        original_dir / "source-tree-reference.json",
+        {
+            "source_type": "codebase",
+            "source_repository": str(root),
+            "package_name": package_name,
+            "git": git,
+            "note": "The codebase adapter preserves file paths, hashes, symbols, and graph records. It does not copy every source file into the package by default.",
+        },
+    )
     write_json(tables_dir / "ctl-records.json", records_to_json(records))
     write_json(tables_dir / "code-graph-edges.json", edges)
     write_json(tables_dir / "code-files.json", [{"path": relpath(path, root), "language": file_language(path), "size_bytes": path.stat().st_size} for path in files])
     write_json(output_dir / "search.json", search_entries(records))
     write_json(graph_dir / "ctl-code-graph.json", graph)
-
-    git = git_metadata(root)
+    write_json(
+        manifests_dir / "provenance.json",
+        {
+            "source_id": package_name,
+            "source_type": "codebase",
+            "source_repository": str(root),
+            "created_at": utc_now(),
+            "adapter": "ctl-core-codebase",
+            "adapter_version": CTL_CODEBASE_VERSION,
+            "git": git,
+            "file_count": len(files),
+            "record_count": len(records),
+            "graph": "graph/ctl-code-graph.json",
+            "original_reference": "assets/original/source-tree-reference.json",
+            "source_copy_policy": "paths-and-hashes-only",
+        },
+    )
     write_json(
         output_dir / "manifest.json",
         manifest(
