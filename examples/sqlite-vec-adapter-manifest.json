@@ -1,0 +1,42 @@
+{
+  "name": "ctl-adapter-sqlite-vec",
+  "display_name": "SQLite-vec CTL Index Adapter",
+  "family": "database",
+  "status": "planned",
+  "description": "Builds a rebuildable local SQLite vector index from CTL records while leaving the CTL package as the source of truth.",
+  "repository": "https://github.com/dpi-workshop/ctl-core",
+  "upstream_project": "https://github.com/asg017/sqlite-vec",
+  "license": "adapter Apache-2.0; upstream sqlite-vec MIT/Apache-2.0, verify before release",
+  "external_dependencies": [
+    {
+      "name": "sqlite-vec",
+      "type": "sqlite-extension-or-python-package",
+      "required": true,
+      "install_hint": "python -m pip install sqlite-vec",
+      "license": "MIT/Apache-2.0 upstream"
+    }
+  ],
+  "input_contract": {
+    "package_manifest": "manifest.json",
+    "records": "assets/tables/ctl-records.json",
+    "search": "search.json",
+    "provenance": "manifests/provenance.json"
+  },
+  "output_contract": {
+    "index_file": "indexes/sqlite-vec/ctl-vector-index.sqlite",
+    "manifest": "indexes/sqlite-vec/index-manifest.json",
+    "tables": ["ctl_records", "ctl_record_text", "ctl_embeddings", "ctl_fts"]
+  },
+  "permission_boundary": {
+    "network": false,
+    "writes_outside_package": false,
+    "requires_user_credentials": false
+  },
+  "quality_checks": [
+    "all indexed rows keep CTL record ids",
+    "index can be rebuilt from package files",
+    "embedding model and dimensions are recorded",
+    "source paths and asset paths remain relative",
+    "missing sqlite-vec dependency reports install guidance"
+  ]
+}

@@ -67,6 +67,8 @@ Each record should follow this shape:
 
 See [../examples/adapter-manifest.json](../examples/adapter-manifest.json) for
 a fuller example with dependency, permission, output, and quality-check fields.
+The [SQLite-vec adapter manifest](../examples/sqlite-vec-adapter-manifest.json)
+shows the same pattern for a rebuildable local vector index.
 
 ## Adapter Manifest
 
@@ -128,6 +130,7 @@ packages. They do not own the data.
 | Adapter | Best For | Integration Type | License Status | CTL Status |
 | --- | --- | --- | --- | --- |
 | SQLite | portable local indexes | stdlib/embedded | public domain style SQLite core | working/private |
+| SQLite-vec | local semantic search beside SQLite/FTS indexes | optional SQLite extension/Python package | MIT/Apache-2.0 upstream; pre-v1, verify before adapter release | planned |
 | DuckDB | local analytical SQL | optional dependency | MIT | working/private |
 | PostgreSQL | multi-user server indexes | server database | PostgreSQL License | working/private |
 | MongoDB | document-shaped records/manifests | server database | external terms vary | working/private |

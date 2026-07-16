@@ -176,6 +176,21 @@
       "notes": "Good local pocket notebook. Not the source of truth."
     },
     {
+      "id": "database.sqlite_vec",
+      "name": "SQLite-vec",
+      "category": "database",
+      "status": "planned",
+      "default_enabled": false,
+      "dependency_type": "optional_sqlite_extension_or_python_package",
+      "bundled": false,
+      "best_for": ["local semantic search", "portable single-user vector indexes", "offline agent memory", "SQLite plus FTS hybrid retrieval"],
+      "requires": ["sqlite-vec"],
+      "install_url": "https://github.com/asg017/sqlite-vec",
+      "project_url": "https://github.com/asg017/sqlite-vec",
+      "license": "MIT/Apache-2.0 upstream; pre-v1, verify before adapter release",
+      "notes": "Use as a rebuildable local vector index beside CTL packages. Do not vendor into CTL-Core."
+    },
+    {
       "id": "database.duckdb",
       "name": "DuckDB",
       "category": "database",

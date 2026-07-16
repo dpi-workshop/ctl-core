@@ -21,6 +21,7 @@ the durable source.
 Examples:
 
 - SQLite
+- SQLite-vec
 - DuckDB
 - PostgreSQL
 - MongoDB
@@ -29,3 +30,17 @@ Examples:
 - Neo4j
 - LanceDB
 - libSQL/Turso local
+
+## Lightweight Local Vector Option
+
+`sqlite-vec` belongs between plain SQLite and heavier vector stores such as
+Qdrant or LanceDB. It should be treated as an optional local vector index:
+
+- CTL package files remain the source of truth.
+- SQLite FTS can handle keyword search.
+- `sqlite-vec` can hold rebuildable embeddings for semantic search.
+- The resulting `.sqlite` file can sit beside a CTL package and be deleted or
+  rebuilt without damaging the package.
+
+Do not vendor `sqlite-vec` into CTL-Core. Detect whether the user installed it,
+then fail gracefully with install guidance when it is unavailable.
