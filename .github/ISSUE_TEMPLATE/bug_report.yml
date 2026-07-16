@@ -1,0 +1,67 @@
+name: Bug report
+description: Report something that is broken or confusing in CTL-Core.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve CTL-Core.
+
+        Do not include API keys, private documents, paid source files, account tokens, cookies, or personal data.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What went wrong?
+      placeholder: Describe the bug in one or two paragraphs.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Use a minimal public or generated sample when possible.
+      placeholder: |
+        1. Run ...
+        2. Open ...
+        3. See ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect CTL-Core to do?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include OS, Python version, and command used.
+      placeholder: |
+        OS:
+        Python:
+        Command:
+    validations:
+      required: false
+  - type: textarea
+    id: package
+    attributes:
+      label: CTL package details
+      description: Include relevant file names, record ids, or adapter names. Do not attach private source files.
+      placeholder: |
+        Adapter:
+        Source type:
+        Relevant record id:
+    validations:
+      required: false
+

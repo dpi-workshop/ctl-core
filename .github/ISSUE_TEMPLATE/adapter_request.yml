@@ -1,0 +1,73 @@
+name: Adapter request
+description: Request or propose an optional parser, database, storage, runtime, or agent adapter.
+title: "[Adapter]: "
+labels: ["adapter", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        CTL-Core keeps adapters optional. Please describe the tool and how it would produce or consume CTL packages.
+
+        Do not include credentials, private data, or vendor account secrets.
+  - type: input
+    id: adapter-name
+    attributes:
+      label: Adapter name
+      placeholder: Docling, PaddleOCR, Kuzu, rclone, etc.
+    validations:
+      required: true
+  - type: dropdown
+    id: adapter-family
+    attributes:
+      label: Adapter family
+      options:
+        - parser
+        - database/index
+        - source input
+        - code intelligence
+        - cloud storage
+        - runtime/sandbox
+        - versioning
+        - agent workflow
+        - other
+    validations:
+      required: true
+  - type: input
+    id: project-url
+    attributes:
+      label: Project URL
+      placeholder: https://github.com/example/project
+    validations:
+      required: false
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: What should this adapter do for CTL packages?
+      placeholder: Explain the source type, output records, assets, or index it should support.
+    validations:
+      required: true
+  - type: textarea
+    id: outputs
+    attributes:
+      label: Expected CTL output
+      description: What records/assets should this adapter produce or consume?
+      placeholder: |
+        Records:
+        Assets:
+        Provenance:
+        Indexes:
+    validations:
+      required: false
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and license notes
+      description: List external tools, services, and known license concerns.
+      placeholder: |
+        Dependencies:
+        License:
+        Local-only or network-enabled:
+    validations:
+      required: false
+
