@@ -6,7 +6,7 @@ Use this before creating a public GitHub repo.
 
 - [ ] GitHub owner/org chosen: `dpi-workshop`
 - [ ] Repo name chosen: `ctl-core`
-- [ ] Public maintainer name chosen: `Dean Khong`
+- [ ] Public maintainer name chosen: `DPI Workshop`
 - [ ] Git author name/email checked
 - [ ] GitHub no-reply or project email configured
 

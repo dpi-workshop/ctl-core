@@ -243,4 +243,4 @@ opening issues or pull requests.
 
 ## License
 
-Apache-2.0. Maintained by Dean Khong.
+Apache-2.0. Maintained by DPI Workshop.
