@@ -18,6 +18,10 @@ They must not:
 Database adapters are optional acceleration layers. CTL package files remain
 the durable source.
 
+See [../../../docs/database-adapter-contract.md](../../../docs/database-adapter-contract.md)
+for the shared contract, safety rules, baseline tables, and SQLite/SQLite-vec
+implementation plan.
+
 Examples:
 
 - SQLite

@@ -127,6 +127,9 @@ CTL preserves the repo as durable data. Code-intelligence tools explain it.
 Database/index adapters rebuild search, SQL, graph, or vector indexes from CTL
 packages. They do not own the data.
 
+The shared database adapter contract is documented in
+[database-adapter-contract.md](database-adapter-contract.md).
+
 | Adapter | Best For | Integration Type | License Status | CTL Status |
 | --- | --- | --- | --- | --- |
 | SQLite | portable local indexes | stdlib/embedded | public domain style SQLite core | working/private |
