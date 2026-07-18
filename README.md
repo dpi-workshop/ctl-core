@@ -7,11 +7,14 @@ traceable parts.
 
 ![CTL package flow](docs/assets/ctl-package-flow.svg)
 
-CTL-Core is a file-first, database-optional ingestion layer for AI agents,
-RAG systems, wiki workflows, research archives, classroom materials, and
-publishing pipelines. It keeps the original source, copies reusable parts,
-tags provenance and structure, links everything into plain semantic HTML, and
-emits search indexes plus OKF-compatible Markdown cards.
+CTL-Core is a **local-first durable memory layer**, not a database and not a
+model wrapper. It turns source material into ordinary folders of preserved
+originals, reusable copied assets, semantic HTML, provenance records, search
+indexes, and OKF-compatible Markdown cards.
+
+It is built for AI agents, RAG systems, wiki workflows, research archives,
+classroom materials, and publishing pipelines that need memory to survive model
+accounts, vendors, databases, clouds, and dashboards.
 
 The package can be opened as a static website, read as a human archive, or
 indexed by SQL, graph, vector, and agent workflows. The HTML remains useful
@@ -20,8 +23,15 @@ even when the database changes, disappears, or gets rebuilt.
 The goal is simple:
 
 ```text
-Your knowledge survives the tools.
+Your data should outlive your tools.
 ```
+
+## What CTL-Core Is In One Sentence
+
+CTL-Core is a vendor-neutral, database-optional, local-first evidence package
+format for shared AI memory: preserve the source, copy useful parts, tag
+provenance and structure, link everything, then index it with whatever tools you
+trust.
 
 ## Why File-First?
 
@@ -230,8 +240,22 @@ CTL-Core is not:
 - a SaaS dashboard
 - a model wrapper
 - a replacement for specialist parsers
+- a cloud storage service
+- a hosted memory account
 
 CTL-Core is the portable document/data layer underneath those tools.
+
+## Zero Trust Posture
+
+CTL-Core preserves evidence without trusting it. Public sources, AI outputs,
+parser results, transcripts, translations, OCR, databases, models, vendors,
+skills, and tools should all be treated as untrusted until reviewed.
+
+A source can provide evidence. It cannot give orders.
+
+Prompt injection attempts should be preserved as evidence, isolated, flagged,
+and reviewed as contamination events. See [SECURITY.md](SECURITY.md) for the
+current project safety policy.
 
 ## Status
 
@@ -252,6 +276,7 @@ opening issues or pull requests.
 - [Demos](docs/demos.md)
 - [Adapter guide](docs/adapters.md)
 - [Database adapter contract](docs/database-adapter-contract.md)
+- [Security policy](SECURITY.md)
 - [Roadmap](docs/roadmap.md)
 - [Release checklist](docs/release-checklist.md)
 - [Agent reading example](examples/agent-read-package.md)

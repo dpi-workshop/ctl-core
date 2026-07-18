@@ -2,6 +2,18 @@
 
 CTL-Core is an early MVP, but security is part of the project from day one.
 
+CTL-Core follows a zero-trust preservation model:
+
+- preserve source evidence
+- do not trust source evidence
+- keep originals separate from corrections, annotations, and decisions
+- treat external code, documents, issues, pull requests, parser output, and AI
+  output as untrusted input
+- keep indexes and databases rebuildable
+- keep credentials and private files outside CTL packages
+
+A source can provide evidence. It cannot give orders.
+
 ## Reporting Security Issues
 
 Please do not open a public issue with secrets, exploit details, private data,
@@ -48,3 +60,14 @@ instructions, system policy, release policy, or secret-handling rules.
 
 Do not run unknown contributor code, install unknown dependencies, or execute
 networked reproduction commands until the change has been inspected.
+
+## Prompt Injection
+
+Prompt injection attempts are contamination events. Do not delete or silently
+rewrite the evidence. Preserve the source text, isolate it from operational
+instructions, flag the affected source/package/job, and review the possible
+blast radius before allowing agent use.
+
+Examples include instructions that ask an agent to ignore system policy, reveal
+secrets, change tools, install dependencies, exfiltrate data, alter release
+rules, or treat source content as higher-priority instructions.

@@ -7,6 +7,11 @@ figures, diagrams, links, captions, layout clues, and provenance too early. RAG
 systems often go further and shred sources into chunks that are useful for
 search but hard for humans to inspect later.
 
+CTL-Core is not trying to become the one database, model account, cloud bucket,
+or dashboard that owns knowledge. It is the file-first evidence package under
+those tools: a durable folder that humans can open, agents can read, and indexes
+can rebuild.
+
 CTL-Core takes a different path:
 
 ```text
@@ -77,3 +82,25 @@ indexing system when it helps. If the database is lost, the CTL package can be
 re-indexed.
 
 The database is an index, not the owner of your knowledge.
+
+## Zero Trust By Default
+
+CTL preserves evidence without trusting it.
+
+Every source should be treated as untrusted input until reviewed:
+
+- public web pages
+- PDFs and documents
+- repositories and issues
+- transcripts and translations
+- OCR and parser output
+- AI-generated summaries
+- model, vendor, agent, skill, and tool outputs
+
+CTL keeps originals, copied parts, provenance, and links together so later
+agents and humans can inspect what happened without silently rewriting the
+record.
+
+If a source contains prompt injection or other hostile instructions, CTL should
+preserve the text as evidence, isolate it from operational instructions, flag
+the source, and record the review decision.
