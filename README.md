@@ -2,11 +2,19 @@
 
 **Semantic HTML is the source-of-truth view for CTL memory.**
 
+**Why HTML?**
+Vectors chunk the data.  Markdown flattens tables.  HTML preserves.
+
+HTML can represent headings, sections, links, tables, figures, captions,
+metadata, and reusable assets without requiring a database.
+
+CTL-Core uses semantic HTML as the durable working layer, then adds replaceable
+indexes for search, SQL, vector stores, graph stores, or OKF-compatible
+catalogues.
+
 copy-tag-link does **not** convert rich sources into Markdown as the main memory
-format. The durable package is semantic HTML plus preserved files, copied
-assets, manifests, JSON records, and rebuildable indexes. Markdown appears only
-as optional OKF-compatible catalogue cards that point back to the richer CTL
-package.
+format.  Markdown appears only as optional OKF-compatible catalogue cards that 
+point back to the richer CTL package.
 
 ![CTL package flow](docs/assets/ctl-package-flow.svg)
 
@@ -21,7 +29,8 @@ accounts, vendors, databases, clouds, and dashboards.
 
 The package can be opened as a static website, read as a human archive, or
 indexed by SQL, graph, vector, and agent workflows. The HTML remains useful
-even when the database changes, disappears, or gets rebuilt.
+even when the database changes, disappears, or gets rebuilt.  The simple HTML
+files should outlive your vendors, agents, and databases.    
 
 CTL keeps the original files as preserved evidence. The semantic HTML is the
 stable source-of-truth view that humans and agents read. JSON, OKF Markdown
@@ -157,14 +166,6 @@ Optional network and PDF checks:
 python scripts/run_smoke_tests.py --network --pdf
 ```
 
-## Why HTML First?
-
-HTML can represent headings, sections, links, tables, figures, captions,
-metadata, and reusable assets without requiring a database.
-
-CTL-Core uses semantic HTML as the durable working layer, then emits replaceable
-indexes for search, SQL, vector stores, graph stores, or OKF-compatible
-catalogues.
 
 ## Relationship To OKF
 
