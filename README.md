@@ -30,13 +30,6 @@ stable source-of-truth view that humans and agents read. JSON, OKF Markdown
 cards, SQL tables, graph exports, vector embeddings, and RAG chunks are
 derivative indexes that can be rebuilt from the package.
 
-## What CTL-Core Is In One Sentence
-
-CTL-Core is a vendor-neutral, database-optional, local-first evidence package
-format for shared AI memory: preserve the source, copy useful parts, tag
-provenance and structure, link everything, then index it with whatever tools you
-trust.
-
 ## Why File-First?
 
 CTL-Core is designed to avoid vendor lock-in. The durable memory layer is not a
