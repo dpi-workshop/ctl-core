@@ -1,7 +1,5 @@
 **Copy, Tag, Link source material into portable semantic HTML packages.**
 
-**Semantic HTML is the source-of-truth view for CTL memory.**
-
 **Why HTML?**
 Vectors chunk the data.  Markdown flattens tables.  HTML preserves all.
 
