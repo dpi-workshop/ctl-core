@@ -29,8 +29,7 @@ accounts, vendors, databases, clouds, and dashboards.
 
 The package can be opened as a static website, read as a human archive, or
 indexed by SQL, graph, vector, and agent workflows. The HTML remains useful
-even when the database changes, disappears, or gets rebuilt.  The simple HTML
-files should outlive your vendors, agents, and databases.    
+even when the database changes, disappears, or gets rebuilt.  
 
 CTL keeps the original files as preserved evidence. The semantic HTML is the
 stable source-of-truth view that humans and agents read. JSON, OKF Markdown
