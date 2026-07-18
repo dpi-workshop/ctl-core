@@ -3,7 +3,7 @@
 **Semantic HTML is the source-of-truth view for CTL memory.**
 
 **Why HTML?**
-Vectors chunk the data.  Markdown flattens tables.  HTML preserves.
+Vectors chunk the data.  Markdown flattens tables.  HTML preserves all.
 
 HTML can represent headings, sections, links, tables, figures, captions,
 metadata, and reusable assets without requiring a database.
