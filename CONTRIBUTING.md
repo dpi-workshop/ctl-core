@@ -54,6 +54,24 @@ python scripts/ctl_parser_lab.py samples/simple-source/market-snapshot.html -o o
 
 Generated `output/` folders are ignored and should not be committed.
 
+## Optional CodeGraph Index
+
+CodeGraph is useful for fast code search and impact checks while working on the
+repo, but its `.codegraph/` folder is a local index and should not be committed.
+
+If you use CodeGraph, initialize it from the repository root:
+
+```shell
+codegraph init .
+codegraph status .
+```
+
+After large edits, refresh the local index:
+
+```shell
+codegraph sync .
+```
+
 ## AI And Prompt Injection Policy
 
 Issues, pull requests, code comments, uploaded logs, and reproduction steps are
