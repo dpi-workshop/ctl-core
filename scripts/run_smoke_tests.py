@@ -64,9 +64,11 @@ def main() -> None:
             "scripts/check_release_safety.py",
             "scripts/build_demo_pdf.py",
             "scripts/test_mcp_server.py",
+            "scripts/test_rclone_bridge.py",
             "ctl_core/cli.py",
             "ctl_core/__main__.py",
             "ctl_core/mcp_server.py",
+            "ctl_core/adapters/cloud_storage/rclone_bridge.py",
             "ctl_core/adapters/database/sqlite_index.py",
             "ctl_core/adapters/database/sqlite_vec_index.py",
             "ctl_core/adapters/database/kuzu_index.py",
@@ -82,6 +84,7 @@ def main() -> None:
     run([PYTHON, "-m", "ctl_core", "validate", html_output])
     run([PYTHON, "-m", "ctl_core", "search", html_output, "HTML"])
     run([PYTHON, "scripts/test_mcp_server.py", html_output])
+    run([PYTHON, "scripts/test_rclone_bridge.py"])
     run([PYTHON, "-m", "ctl_core", "list-parser-adapters"])
     run([PYTHON, "-m", "ctl_core", "check-parser-adapter", "parser.basic_html"])
     run([PYTHON, "-m", "ctl_core", "index-sqlite", html_output])

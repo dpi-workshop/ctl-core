@@ -425,7 +425,7 @@
       "id": "cloud_storage.rclone",
       "name": "rclone",
       "category": "cloud_storage",
-      "status": "planned",
+      "status": "working_optional_bridge",
       "default_enabled": false,
       "dependency_type": "external_cli",
       "bundled": false,
@@ -434,7 +434,7 @@
       "install_url": "https://rclone.org/downloads/",
       "project_url": "https://github.com/rclone/rclone",
       "license": "MIT",
-      "notes": "Use as a bridge. Do not vendor rclone into CTL-Core."
+      "notes": "Implemented as a safe external CLI bridge. Use CTL_RCLONE_BIN or PATH. Do not vendor rclone into CTL-Core."
     },
     {
       "id": "cloud_storage.alist",

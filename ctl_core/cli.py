@@ -287,6 +287,51 @@ def cmd_check_parser_adapter(args: argparse.Namespace) -> int:
     return 0 if result["available"] else 1
 
 
+def cmd_rclone_status(args: argparse.Namespace) -> int:
+    from .adapters.cloud_storage.rclone_bridge import status
+
+    result = status(rclone_bin=args.rclone_bin)
+    print_json(result)
+    return 0 if result.get("installed") else 1
+
+
+def cmd_rclone_remotes(args: argparse.Namespace) -> int:
+    from .adapters.cloud_storage.rclone_bridge import list_remotes
+
+    result = list_remotes(rclone_bin=args.rclone_bin)
+    print_json(result)
+    return 0 if result.get("returncode") == 0 else 1
+
+
+def cmd_rclone_copy(args: argparse.Namespace) -> int:
+    from .adapters.cloud_storage.rclone_bridge import copy_package
+
+    result = copy_package(
+        package_path(args.package),
+        args.target,
+        rclone_bin=args.rclone_bin,
+        dry_run=args.dry_run,
+        checksum=not args.no_checksum,
+    )
+    print_json(result)
+    return 0 if result.get("returncode") == 0 else 1
+
+
+def cmd_rclone_sync(args: argparse.Namespace) -> int:
+    from .adapters.cloud_storage.rclone_bridge import sync_package
+
+    result = sync_package(
+        package_path(args.package),
+        args.target,
+        rclone_bin=args.rclone_bin,
+        dry_run=args.dry_run,
+        checksum=not args.no_checksum,
+        confirm_delete_risk=args.confirm_delete_risk,
+    )
+    print_json(result)
+    return 0 if result.get("returncode") == 0 else 1
+
+
 def cmd_mcp(args: argparse.Namespace) -> int:
     from .mcp_server import serve
 
@@ -362,6 +407,35 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser_check_parser.add_argument("adapter", help="Parser adapter id, for example parser.docling.")
     parser_check_parser.set_defaults(func=cmd_check_parser_adapter)
+
+    rclone_status_parser = subparsers.add_parser("rclone-status", help="Check optional rclone bridge availability.")
+    rclone_status_parser.add_argument("--rclone-bin", help="Path to rclone executable. Defaults to CTL_RCLONE_BIN or PATH.")
+    rclone_status_parser.set_defaults(func=cmd_rclone_status)
+
+    rclone_remotes_parser = subparsers.add_parser("rclone-remotes", help="List configured rclone remotes.")
+    rclone_remotes_parser.add_argument("--rclone-bin", help="Path to rclone executable. Defaults to CTL_RCLONE_BIN or PATH.")
+    rclone_remotes_parser.set_defaults(func=cmd_rclone_remotes)
+
+    rclone_copy_parser = subparsers.add_parser("rclone-copy", help="Copy a valid CTL package with rclone.")
+    rclone_copy_parser.add_argument("package", help="Path to a CTL package folder.")
+    rclone_copy_parser.add_argument("target", help="rclone target, for example remote:path/to/package.")
+    rclone_copy_parser.add_argument("--rclone-bin", help="Path to rclone executable. Defaults to CTL_RCLONE_BIN or PATH.")
+    rclone_copy_parser.add_argument("--dry-run", action="store_true", help="Ask rclone to show planned copy operations only.")
+    rclone_copy_parser.add_argument("--no-checksum", action="store_true", help="Do not pass --checksum to rclone.")
+    rclone_copy_parser.set_defaults(func=cmd_rclone_copy)
+
+    rclone_sync_parser = subparsers.add_parser("rclone-sync", help="Sync a valid CTL package with rclone.")
+    rclone_sync_parser.add_argument("package", help="Path to a CTL package folder.")
+    rclone_sync_parser.add_argument("target", help="rclone target, for example remote:path/to/package.")
+    rclone_sync_parser.add_argument("--rclone-bin", help="Path to rclone executable. Defaults to CTL_RCLONE_BIN or PATH.")
+    rclone_sync_parser.add_argument("--dry-run", action="store_true", help="Ask rclone to show planned sync operations only.")
+    rclone_sync_parser.add_argument("--no-checksum", action="store_true", help="Do not pass --checksum to rclone.")
+    rclone_sync_parser.add_argument(
+        "--confirm-delete-risk",
+        action="store_true",
+        help="Required for non-dry-run sync because rclone sync can delete destination files.",
+    )
+    rclone_sync_parser.set_defaults(func=cmd_rclone_sync)
 
     mcp_parser = subparsers.add_parser("mcp", help="Run the CTL-Core MCP stdio server.")
     mcp_parser.set_defaults(func=cmd_mcp)

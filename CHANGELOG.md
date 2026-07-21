@@ -10,3 +10,4 @@
 - Added adapter family documentation for parsers, databases, cloud storage, source intake, code intelligence, runtime, versioning, and agent workflows.
 - Added `python -m ctl_core` commands for package inspection, validation, and search.
 - Added a dependency-free `python -m ctl_core mcp` stdio server so agents can list CTL packages, validate packages, search records, fetch records, read assets, and read OKF cards.
+- Added an optional rclone cloud-storage bridge for checking rclone, listing remotes, copying CTL packages, and guarded sync operations.

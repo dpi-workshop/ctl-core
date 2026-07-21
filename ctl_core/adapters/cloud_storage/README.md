@@ -35,6 +35,33 @@ mount many cloud providers. A CTL rclone adapter should call the external
 
 CTL-Core should not bundle rclone or require it for local package creation.
 
+Current CTL commands:
+
+```shell
+python -m ctl_core rclone-status
+python -m ctl_core rclone-remotes
+python -m ctl_core rclone-copy PACKAGE remote:path/to/package --dry-run
+python -m ctl_core rclone-copy PACKAGE remote:path/to/package
+```
+
+If rclone is not on `PATH`, point CTL at it with `CTL_RCLONE_BIN` or
+`--rclone-bin`.
+
+```powershell
+$env:CTL_RCLONE_BIN="E:\Tools\rclone\rclone.exe"
+python -m ctl_core rclone-status
+```
+
+`rclone-copy` is the preferred first bridge because it does not delete
+destination files. `rclone-sync` is also available, but non-dry-run sync requires
+`--confirm-delete-risk` because rclone sync can delete files from the
+destination to make it match the source.
+
+```shell
+python -m ctl_core rclone-sync PACKAGE remote:path/to/package --dry-run
+python -m ctl_core rclone-sync PACKAGE remote:path/to/package --confirm-delete-risk
+```
+
 ### AList
 
 AList is useful when a user wants a unified web file browser or WebDAV layer
